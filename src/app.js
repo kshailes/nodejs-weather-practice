@@ -45,15 +45,15 @@ app.get('/weather', (req, res) => {
                 error: error
             })
         }
-        forecast.forecast(data.latitude, data.longitude, (error, data) => {
+        forecast.forecast(data.latitude, data.longitude, (error, forecastData) => {
             if (error) {
                 return res.send({
                     error: error
                 })
             }
-            return res.send({
-                data: data
-            })
+            return res.send(
+                data.location + " is at latitude " + data.latitude + " and longitude " + data.longitude + ". Temperature is " + forecastData.current_temperature
+            )
         })
     })
 
